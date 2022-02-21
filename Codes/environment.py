@@ -79,7 +79,7 @@ class TradeEnv():
 
         """
         self.state= (self.readTensor(self.data, self.window_length) , w_init , p_init )
-        self.index = self.window_length + t
+        self.index = t + self.window_length
         self.done = False
         
         return self.state, self.done
@@ -95,8 +95,10 @@ class TradeEnv():
         """
 
         index = self.index
-        #get Xt from data:
+        # print(index)
+        # get Xt from data:
         data = self.readTensor(self.data, index)
+        # print(data)
         done = self.done
         
         #beginning of the day 

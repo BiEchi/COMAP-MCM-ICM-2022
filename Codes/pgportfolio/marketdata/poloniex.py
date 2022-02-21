@@ -78,7 +78,7 @@ class Poloniex:
         logging.info("Poloniex command: {}, args: {}".format(command, args))
         args = args or {}
         if command in PUBLIC_COMMANDS:
-            url = 'https://poloniex.com/public?'
+            url = 'https://poloniex.com/markets'
             args['command'] = command
             # prevent urllib from complaining when using a proxy
             context = ssl.create_default_context()
@@ -92,7 +92,7 @@ class Poloniex:
                                     constants.PROXY_ADDR,
                                     constants.PROXY_PORT,
                                     True, context=context))
-            ret = opener.open(Request(url + urlencode(args)))
+            ret = opener.open(Request(url ) )# + urlencode(args)
             return json.loads(ret.read().decode(encoding='UTF-8'))
         else:
             return False
